@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YXPPCCCT Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+    }
+    label {
+      display: flex;
+      justify-content: space-between;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+    .output {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>YXPPCCCT Editor</h1>
+  <div class="container">
+    <label>
+      Y (Vertical Flip)
+      <input type="checkbox" id="yFlip">
+    </label>
+    <label>
+      X (Horizontal Flip)
+      <input type="checkbox" id="xFlip">
+    </label>
+    <label>
+      Priority
+      <select id="priority">
+        <option value="00">No Priority</option>
+        <option value="01">Low Priority</option>
+        <option value="10">Medium Priority</option>
+        <option value="11">High Priority</option>
+      </select>
+    </label>
+    <label>
+      Palette
+      <select id="palette">
+        <option value="000">Palette 8 (Mario)</option>
+        <option value="001">Palette 9 (Grey)</option>
+        <option value="010">Palette A (Yellow)</option>
+        <option value="011">Palette B (Blue)</option>
+        <option value="100">Palette C (Red)</option>
+        <option value="101">Palette D (Green)</option>
+        <option value="110">Palette E</option>
+        <option value="111">Palette F</option>
+      </select>
+    </label>
+    <label>
+      Graphics Page (T)
+      <input type="checkbox" id="graphicsPage">
+    </label>
+    <button onclick="updateHex()">Generate Hex</button>
+    <div class="output" id="output">Hex Value: 0x00</div>
+  </div>
+
+  <script>
+    function updateHex() {
+      const yFlip = document.getElementById('yFlip').checked ? '1' : '0';
+      const xFlip = document.getElementById('xFlip').checked ? '1' : '0';
+      const priority = document.getElementById('priority').value;
+      const palette = document.getElementById('palette').value;
+      const graphicsPage = document.getElementById('graphicsPage').checked ? '1' : '0';
+
+      const binaryValue = yFlip + xFlip + priority + palette + graphicsPage;
+      const hexValue = parseInt(binaryValue, 2).toString(16).toUpperCase().padStart(2, '0');
+
+      document.getElementById('output').textContent = `Hex Value: 0x${hexValue}`;
+    }
+  </script>
+</body>
+</html>
