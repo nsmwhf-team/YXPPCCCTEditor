@@ -57,12 +57,12 @@
         <option value="011">Palette B (Blue)</option>
         <option value="100">Palette C (Red)</option>
         <option value="101">Palette D (Green)</option>
-        <option value="110">Palette E</option>
-        <option value="111">Palette F</option>
+        <option value="110">Palette E (Per-level)</option>
+        <option value="111">Palette F (Per-level)</option>
       </select>
     </label>
     <label>
-      Graphics Page (T)
+      Page (T)
       <input type="checkbox" id="graphicsPage">
     </label>
     <button onclick="updateHex()">Generate Hex</button>
@@ -80,7 +80,7 @@
       const binaryValue = yFlip + xFlip + priority + palette + graphicsPage;
       const hexValue = parseInt(binaryValue, 2).toString(16).toUpperCase().padStart(2, '0');
 
-      document.getElementById('output').textContent = `Hex Value: 0x${hexValue}`;
+      document.getElementById('output').textContent = `Hex: 0x${hexValue}`;
     }
   </script>
 </body>
